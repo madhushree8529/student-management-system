@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Management System (TypeScript)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>🎓 Student Management System</h1>
+      <p>Built with TypeScript · Modern Web Programming</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Statistics -->
+    <section class="stats" aria-label="Statistics">
+      <div class="stat"><span>Total Students</span><strong id="stat-total">0</strong></div>
+      <div class="stat"><span>Average Marks</span><strong id="stat-avg">–</strong></div>
+      <div class="stat"><span>Pass Percentage</span><strong id="stat-pass">–</strong></div>
+      <div class="stat"><span>Topper</span><strong id="stat-topper">–</strong></div>
+    </section>
+
+    <div class="layout">
+      <!-- Form -->
+      <section class="card form-card">
+        <h2 id="form-title">Add Student</h2>
+        <form id="student-form" novalidate>
+          <div class="field">
+            <label for="rollNo">Roll Number</label>
+            <input id="rollNo" type="text" placeholder="e.g. 711524BCS082" />
+            <small class="error" data-error-for="rollNo"></small>
+          </div>
+          <div class="field">
+            <label for="name">Full Name</label>
+            <input id="name" type="text" placeholder="e.g. Loshitha K" />
+            <small class="error" data-error-for="name"></small>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="name@example.com" />
+            <small class="error" data-error-for="email"></small>
+          </div>
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input id="phone" type="tel" maxlength="10" placeholder="10-digit mobile number" />
+            <small class="error" data-error-for="phone"></small>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="department">Department</label>
+              <select id="department"></select>
+              <small class="error" data-error-for="department"></small>
+            </div>
+            <div class="field">
+              <label for="year">Year</label>
+              <select id="year">
+                <option value="">Select</option>
+                <option value="1">1st Year</option>
+                <option value="2">2nd Year</option>
+                <option value="3">3rd Year</option>
+                <option value="4">4th Year</option>
+              </select>
+              <small class="error" data-error-for="year"></small>
+            </div>
+          </div>
+          <div class="field">
+            <label for="marks">Marks (out of 100)</label>
+            <input id="marks" type="number" min="0" max="100" step="0.1" placeholder="e.g. 85" />
+            <small class="error" data-error-for="marks"></small>
+          </div>
+          <div class="form-actions">
+            <button id="submit-btn" type="submit" class="btn primary">Add Student</button>
+            <button id="cancel-btn" type="button" class="btn hidden">Cancel</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- List -->
+      <section class="card list-card">
+        <div class="toolbar">
+          <input id="search" type="search" placeholder="Search name, roll no, email..." />
+          <select id="filter-dept" aria-label="Filter by department"></select>
+          <select id="sort-key" aria-label="Sort by">
+            <option value="name">Sort: Name</option>
+            <option value="rollNo">Sort: Roll No</option>
+            <option value="marks">Sort: Marks</option>
+            <option value="year">Sort: Year</option>
+          </select>
+          <button id="sort-dir" type="button" class="btn">↑ Asc</button>
+        </div>
+        <div class="toolbar-sub">
+          <span id="result-count" class="muted"></span>
+          <div>
+            <button id="export-btn" type="button" class="btn small">Export CSV</button>
+            <button id="clear-btn" type="button" class="btn small danger">Clear All</button>
+          </div>
+        </div>
+
+        <div id="table-wrap" class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Roll No</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Dept</th>
+                <th>Year</th>
+                <th>Marks</th>
+                <th>Grade</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="student-rows"></tbody>
+          </table>
+        </div>
+        <div id="empty-state" class="empty hidden">
+          <p>📭 No students found.</p>
+          <small>Add a student using the form, or change your search/filter.</small>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <footer class="site-footer">Student Management System · TypeScript · Data saved in your browser (localStorage)</footer>
+
+  <!-- Compiled output of src/app.ts -->
+  <script type="module" src="dist/app.js"></script>
+</body>
+</html>
